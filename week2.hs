@@ -30,6 +30,12 @@ memberSet :: Int -> [Int] -> Bool
 memberSet n [] = False
 memberSet n (x:xs) = if n==x then True else memberSet n xs
 
+unionSet :: [Int] -> [Int] -> [Int]
+unionSet xs [] = xs
+unionSet (x:xs) ys
+    | memberSet x ys = unionSet xs ys
+    | otherwise = x : unionSet xs ys
+
 
 main :: IO()
-main = print(splitList 2 [1, 2, 3])
+main = print(memberSet 10 [1, 2, 3])
